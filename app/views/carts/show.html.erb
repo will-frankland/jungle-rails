@@ -7,6 +7,10 @@
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
+      <% if enhanced_cart.length == 0 %>
+      <strong class="alert alert-danger"> Cart is empty </strong> <br><br>
+        <%= link_to "Homepage", root_path %>
+        <% else %>
         <tr>
           <th colspan="2">Product</th>
           <th>Unit Price</th>
@@ -47,6 +51,7 @@
         </script>
       <% end %>
     </div>
+    <% end %>
   </div>
 
 </section>

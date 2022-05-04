@@ -5,9 +5,55 @@
   </header>
 
   <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
+    <h4>Thank you for your order!</h4><br></br>
+    <h4> Order summary for: <%= @order.email %></h4> 
+    <table class="table table-bordered">
+      <tr>
+        <th>Product</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Item Price</th>
+        <th>Total Price</th>
+      </tr>
+    <% @order.line_items.each do |line_item| %>
+    <tr>
+    <td><img src="<%= line_item.product.image %>" height="100" width="100" /></td>
+    <td><%= line_item.product.name %></td>
+    <td><%= line_item.product.description %></td>
+    <td><%= line_item.quantity %></td>
+    <td><%= humanized_money_with_symbol line_item.item_price_cents/ 100 %></td>
+    <td><%= humanized_money_with_symbol line_item.total_price_cents/ 100 %></td>
+    </tr>
+    <tfoot>
+        <tr>
+          <th colspan="5">
+            TOTAL:
+          </th>
+          <th>
+            <%= humanized_money_with_symbol @order.total_cents/ 100.0 %>
+          </th>
+        </tr>
+      </tfoot>
+
+  <% end %>
+  </table>
+
   </div>
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>
+
+
+# Things to display
+# - items in order
+# - price
+# - description
+# - image
+# - final amount
+# - customer email
+
+#  Where do these come from?
+
+# How do you input them into this form?

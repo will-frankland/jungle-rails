@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get 'static_pages/about'
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
   root to: 'products#index'
 
   resources :products, only: [:index, :show]
